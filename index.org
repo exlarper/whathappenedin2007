@@ -6,14 +6,13 @@
 Inspired by [[https://wtfhappenedin1971.com][WTF Happened in 1971]] I wanted to make a website detailing many charts that show something weird is happening.
 There are decreases in many important measures like productivity, happiness, test scores that correlate with good life outcomes, and an increase in detrimental outcomes like loneliness, depression and internet addiction.
 
-We had a few major events happen in that time:
-- Great Recession
-- COVID 19 Pandemic
-- Introduction of the iPhone
-
-My hypothesis is that the introduction of the iPhone, and thus the modern mobile age is causing a huge impact on attention and is limiting life outcomes of millions around the globe.
+We had many major events in that time including the Great Recession and COVID-19 that had an large impact, but my hypothesis is that the introduction of the iPhone, and thus the modern mobile age is causing a huge impact on attention and is limiting life outcomes of millions around the globe.
 
 It is worth remembering that Correlation != Causation, but it is at the very minimum interesting that the charts seem to line up around 2007, and increase in magnitude of upward or downward slope as adoption of smartphones increase.
+
+#+BEGIN_QUOTE
+If you have some interesting charts in the same vein, please feel free to open a PR [[https://github.com/afallon02/whathappenedin2007][here]].
+#+END_QUOTE
 
 * Productivity
 #+NAME: fig:uk-productivity-1
@@ -46,5 +45,7 @@ file:imgs/internet-addiction.png
 
 #+BEGIN_QUOTE
 Smartphones grab our attention so powerfully that if they merely vibrate in our pockets for a tenth of a second, many of us will interrupt a face-to-face conversation, just in case the phone is bringing us an important update. 
+
 --- Jonathan Haidt, The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness 
 #+END_QUOTE
+

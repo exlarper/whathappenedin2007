@@ -14,11 +14,70 @@ fi
 
 function build {
   echo "Building site..."
+  
+  # --- START: CSS Generation and Injection Setup ---
+  echo "-> Generating minimal.css..."
+  # Create the CSS file using a here-doc. It will be copied to docs/ by rsync.
+  cat > minimal.css << EOF
+/* Core Minimal CSS from thecascade.dev */
+html { color-scheme: light dark; }
+body {
+    /* Overriding default font, size, and line-height for better readability */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+/* Make images responsive and avoid overflow */
+img, svg, video { max-width: 100%; display: block; }
+
+/* Restrain content width for optimal reading experience (45-90 characters per line) */
+main {
+    max-width: min(70ch, 100% - 4rem);
+    margin-inline: auto; /* Center the content */
+    padding: 2rem 0; 
+}
+
+/* Structural enhancements for Org Mode elements */
+h1 { font-size: 2.5em; margin-top: 0; }
+h2 { font-size: 1.8em; margin-top: 2.5rem; margin-bottom: 1rem; }
+.author { margin-bottom: 2rem; font-style: italic; opacity: 0.8; }
+
+p, ul, blockquote { margin-bottom: 1.5rem; }
+ul { padding-left: 1.5rem; }
+
+figure {
+    margin: 2rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #6c757d; /* A subtle grey border */
+    opacity: 0.9;
+}
+blockquote p {
+    font-style: italic;
+    margin-bottom: 0;
+}
+EOF
+  # --- END: CSS Generation Setup ---
+
   echo "-> Cleaning up old build..."
   rm -rf docs
   mkdir -p docs
-  echo "-> Copying static assets..."
-  # Use --exclude='run' to avoid copying the script itself to docs
+  echo "-> Copying static assets and minimal.css..."
+  # minimal.css is now in the current directory and will be copied to docs/
   rsync -a --exclude='*.org' --exclude='run' --exclude='.git' --exclude='docs' ./ docs/
 
   echo "-> Converting .org files to .html..."
@@ -28,17 +87,35 @@ function build {
     local src_html_file="${org_file%.org}.html"
     echo "    - ${org_file} -> ${dest_html_file}"
     mkdir -p "$(dirname "$dest_html_file")"
-    # Using emacs to convert org to html
+    
+    # Set the CSS link path. If the org file is nested, the path to minimal.css changes.
+    # NOTE: The double quotes in the link MUST be escaped (\") for proper Lisp string evaluation inside the --eval command.
+    # Check if org_file is not at the root (i.e., contains a '/')
+    if [[ "${org_file}" == "./index.org" ]]; then
+        local CSS_LINK='<link rel=\"stylesheet\" href=\"minimal.css\"/>'
+    else
+        # For nested files (e.g., /notes/file.org), the path is ../minimal.css
+        local CSS_LINK='<link rel=\"stylesheet\" href=\"../minimal.css\"/>'
+    fi
+
+    # Using emacs to convert org to html, initializing and injecting the CSS_LINK into the <head>
     emacs --batch "${org_file}" \
+      --eval "(setq org-html-head \"\")" \
       --eval "(setq org-export-with-toc nil)" \
       --eval "(setq org-html-postamble nil)" \
       --eval "(setq org-export-with-section-numbers nil)" \
+      --eval "(setq org-html-head (concat org-html-head \"${CSS_LINK}\"))" \
       --funcall org-html-export-to-html
     mv "${src_html_file}" "${dest_html_file}"
   done
 
   echo "-> Copying CNAME file..."
   cp CNAME docs/CNAME
+
+  # --- START: CSS Cleanup ---
+  echo "-> Cleaning up temporary minimal.css..."
+  rm minimal.css
+  # --- END: CSS Cleanup ---
 
   echo "Build complete. Your site is in the 'docs' directory."
 }

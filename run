@@ -18,16 +18,23 @@ function build {
   rm -rf docs
   mkdir -p docs
   echo "-> Copying static assets..."
+  # Use --exclude='run' to avoid copying the script itself to docs
   rsync -a --exclude='*.org' --exclude='run' --exclude='.git' --exclude='docs' ./ docs/
 
   echo "-> Converting .org files to .html..."
+  # Find all .org files, excluding those in the ./docs directory
   find . -path ./docs -prune -o -name "*.org" -print | while read -r org_file; do
-      local dest_html_file="docs/${org_file%.org}.html"
-      local src_html_file="${org_file%.org}.html"
-      echo "   - ${org_file} -> ${dest_html_file}"
-      mkdir -p "$(dirname "$dest_html_file")"
-      emacs --batch "${org_file}" --eval "(setq org-export-with-toc nil)" --eval "(setq org-html-postamble nil)" --eval "(setq org-export-with-section-numbers nil)" --funcall org-html-export-to-html
-      mv "${src_html_file}" "${dest_html_file}"
+    local dest_html_file="docs/${org_file%.org}.html"
+    local src_html_file="${org_file%.org}.html"
+    echo "    - ${org_file} -> ${dest_html_file}"
+    mkdir -p "$(dirname "$dest_html_file")"
+    # Using emacs to convert org to html
+    emacs --batch "${org_file}" \
+      --eval "(setq org-export-with-toc nil)" \
+      --eval "(setq org-html-postamble nil)" \
+      --eval "(setq org-export-with-section-numbers nil)" \
+      --funcall org-html-export-to-html
+    mv "${src_html_file}" "${dest_html_file}"
   done
 
   echo "-> Copying CNAME file..."
@@ -35,16 +42,40 @@ function build {
 
   echo "Build complete. Your site is in the 'docs' directory."
 }
+# Export the build function so it is available to the subshell created by entr.
+export -f build
+
+# --- NEW FUNCTION FOR WATCHING AND REBUILDING ---
+function watch-build {
+  echo "Watching files for changes (excluding docs)..."
+  # Find all files that are NOT in the 'docs' directory and NOT the CNAME file
+  # Use entr to run the 'build' function whenever a file changes.
+  # 'build' is now available because it was exported.
+  find . \
+    -path ./docs -prune -o \
+    -path ./CNAME -prune -o \
+    -type f -print \
+    | entr -r bash -c 'build'
+}
+# ------------------------------------------------
 
 function run-local {
-  echo "Running local server on http://localhost:8000..."
+  echo "Running local server with Live Reload on http://localhost:3000..."
   python3 -m http.server 3000 --directory docs
-}    
+}
 
 function build-and-run-local {
   build
-  run-local
+  # Run the watcher and the server in the background and foreground, respectively.
+  # We use a subshell and 'trap' to ensure both processes are cleaned up when the script exits.
+  (
+    # Ensure background jobs are cleaned up on exit (e.g., Ctrl+C)
+    trap 'kill 0' EXIT
+    watch-build &  # Run the watcher in the background
+    run-local      # Run the server in the foreground
+  )
 }
+# -----------------------------
 
 function help {
   printf "%s <task> [args]\n\nTasks:\n" "${0}"

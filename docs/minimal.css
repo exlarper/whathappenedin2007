@@ -13,10 +13,17 @@ body {
 img, svg, video { max-width: 100%; display: block; }
 
 /* Restrain content width for optimal reading experience (45-90 characters per line) */
+
 main {
     max-width: min(70ch, 100% - 4rem);
     margin-inline: auto; /* Center the content */
-    padding: 2rem 0; 
+    padding: 2rem 1rem; 
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 16px;
+  }
 }
 
 /* Structural enhancements for Org Mode elements */

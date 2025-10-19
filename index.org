@@ -24,6 +24,9 @@ You can find me here:
 
 This is a work in progress. I want the arguement to get strong over time, it is probably a little weaker than it should be right now, but I think it's obvious _something_ interesting has happened since 2007.
 
+* Update Log
+***** 2025-10-19-15-39 - Add Road Traffic Accidents
+
 * IQ Scores
 The "reverse Flynn effect" refers to a recent decline or plateau in average IQ scores in some developed countries, contrasting with the historical rise in IQ scores known as the Flynn effect. This trend, sometimes called the negative Flynn effect, is attributed to factors like changes in education, lifestyle shifts such as increased screen time, and other environmental influences
 #+NAME: fig:reverse-flynn
@@ -56,6 +59,8 @@ Internet traffic is now primarily coming from mobile devices. It took a while fo
 #+NAME: fig:internet-traffic
 #+CAPTION: Traffic Trends over time
 [[file:imgs/internet_traffic.webp]]
+
+
 
 
 * Test Scores
@@ -135,6 +140,13 @@ The Great Recession and COVID are obviously huge drivers of lost productivity, b
 #+CAPTION: UK Productivity 
 [[file:imgs/uk_productivity_2.jpg]]
 
+* Road Traffic Accidents
+#+NAME: fig:rta
+#+CAPTION: Pedestrian Deaths Per Billion vehicle miles
+[[file:imgs/rta.png]]
+
+Sources:
+- https://www.economist.com/graphic-detail/2019/05/13/smartphones-are-driving-americans-to-distraction
 #+BEGIN_QUOTE
 Smartphones grab our attention so powerfully that if they merely vibrate in our pockets for a tenth of a second, many of us will interrupt a face-to-face conversation, just in case the phone is bringing us an important update. 
 

@@ -1,3 +1,6 @@
-* What happened in 2007?
-
-
+#+TITLE: What happened in 2007?
+#+AUTHOR: Adam Fallon
+#+STARTUP: inlineimages
+* UK Productivity 
+[[file:imgs/uk_productivity.jpg][UK Productivity since 2007]]
+[[file:imgs/uk_productivity_2.jpg][UK Productivity since 2007 - 2]]

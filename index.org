@@ -11,7 +11,7 @@ We had many major events in that time including the Great Recession and COVID-19
 It is worth remembering that Correlation != Causation, but it is at the very minimum interesting that the charts seem to line up around 2007, and increase in magnitude of upward or downward slope as adoption of smartphones increase.
 
 #+BEGIN_QUOTE
-If you have some interesting charts in the same vein, please feel free to open a PR [[https://github.com/afallon02/whathappenedin2007][here]].
+If you have some interesting charts in the same vein, please feel free to open a PR [[https://github.com/afallon02/whathappenedin2007][here]] or email me at 2007@adamfallon.com
 #+END_QUOTE
 
 * Productivity

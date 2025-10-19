@@ -5,7 +5,7 @@
 * It's the damn phones!
 Inspired by [[https://wtfhappenedin1971.com][WTF Happened in 1971]] I wanted to make a website detailing many charts that show something weird is happening.
 
-Beginning around the late 2000s and accelerating through the 2010s, a series of troubling trends emerged. Measures of well-being, including happiness and life satisfaction, began to show signs of strain. Youth mental health entered a state of crisis, with rates of depression, anxiety, and self-harm rising to unprecedented levels. Concurrently, metrics of cognitive performance and academic achievement, such as international test scores and measures of fluid intelligence, appeared to stagnate or decline after decades of progress. Labor productivity growth, a cornerstone of economic prosperity, slowed to a crawl.
+Beginning around the late 2000s and accelerating through the 2010s, a series of troubling trends emerged. Measures of well-being, including happiness and life satisfaction, began to show signs of strain. Youth mental health entered a state of crisis, with rates of depression, anxiety, and self-harm rising to unprecedented levels. Concurrently, metrics of cognitive performance and academic achievement, such as international test scores and measures of fluid intelligence, appeared to stagnate or decline after decades of progress. Labour productivity growth, a cornerstone of economic prosperity, slowed to a crawl.
 
 We had many major events in that time including the Great Recession and COVID-19 that had an large impact, but my hypothesis is that the introduction of the iPhone, and thus the modern mobile age is causing a huge impact on attention and is limiting life outcomes of millions around the globe.
 
@@ -115,7 +115,7 @@ Sources:
 
 * Productivity
 
-Economic productivity, specifically labor productivity (output per hour worked), is the primary driver of long-term improvements in living standards.
+Economic productivity, specifically labour productivity (output per hour worked), is the primary driver of long-term improvements in living standards.
 
 After a period of growth in the late 1990s and early 2000s, Labour productivity growth is slowing following the 2007-2009 
 

@@ -22,6 +22,8 @@ You can find me here:
 - https://www.linkedin.com/in/adam-fallon-4bb4b1300/
 #+END_QUOTE
 
+This is a work in progress. I want the arguement to get strong over time, it is probably a little weaker than it should be right now, but I think it's obvious _something_ interesting has happened since 2007.
+
 * IQ Scores
 The "reverse Flynn effect" refers to a recent decline or plateau in average IQ scores in some developed countries, contrasting with the historical rise in IQ scores known as the Flynn effect. This trend, sometimes called the negative Flynn effect, is attributed to factors like changes in education, lifestyle shifts such as increased screen time, and other environmental influences
 #+NAME: fig:reverse-flynn
